@@ -14,6 +14,7 @@ public class Calculadora {
 
 	public double getNumberOne() {
 		return numberOne;
+		
 	}
 
 	public void setNumberOne(double numberOne) {

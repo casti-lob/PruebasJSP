@@ -9,118 +9,46 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% double result=0; 
+	<%double result=0;
+	double number1= Integer.parseInt(request.getParameter("number1"));
+	double number2= Integer.parseInt(request.getParameter("number2"));
+	String error;
 	
-	%>
-	<form action="Calculadora.jsp">
-		<div align="center">
-			<table  width="200px" height="200px" border="2">
-				<tr>
-					<td colspan="3">
-						<p><%=result %> </p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button name="operator">+</button>
-					
-					</td>
-					<td>
-						<button name="operator">-</button>
-					</td>
-					<td>
-						<button name="operator">*</button>
-					</td>
-					
-				</tr>
-				<tr>
-					<td>
-						<button name="number">9</button>
-						
-						
-					</td>
-					<td>
-						<button name="number">8</button>
-					
-					</td>
-					<td>
-						<button name="number">7</button>
-					
-					</td>
-					
-				</tr>
-				<tr>
-					<td>
-						<button name="number">6</button>
-						
-						
-					</td>
-					<td>
-						<button name="number">5</button>
-					
-					</td>
-					<td>
-						<button name="number">4</button>
-					
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button name="number">3</button>
-						
-						
-					</td>
-					<td>
-						<button name="number">2</button>
-					
-					</td>
-					<td>
-						<button name="number">1</button>
-					
-					</td>
-				</tr>
-				<tr>
-					<td>
-					  <button name="number">0</button>
-					</td>
-					<td>
-						<button name="operator">/</button>
-					</td>
-					<td>
-					  <input type="submit" id="name">
-					</td>
-				</tr>
-				
-				
-				
-			</table>
-		</div>
+	String add = request.getParameter("+");
+	String sub = request.getParameter("-");
+	String mult = request.getParameter("*");
+	String div = request.getParameter("/");
 	
-	</form>
+	Calculadora c = new Calculadora(number1,number2);
 	
-	<%
-	int numberOne= Integer.parseInt(request.getParameter("number"));
-	int numberTwo= Integer.parseInt(request.getParameter("number"));
-	String op = request.getParameter("operator");
-	Calculadora c = new Calculadora(numberOne,numberTwo); 
-	
-	switch(op){
-		case "+":
-			result= c.sumar();
-		case "-":
-			result= c.resta();
-		case "*":
-			result= c.multiplicar();
-		case "/":
-			try {
-				result= c.dividir();
-			} catch (divException e) {
-				e.getMessage();
-			}
-			
-			
+	if(add!=null){
+		result = c.sumar();
+	}if(sub!=null){
+		result = c.resta();
+	}if(mult!=null){
+		result = c.multiplicar();
+	}else{
+		try {
+			result = c.dividir();
+				} catch (divException e) {
+					error = e.getMessage();
+					
+				}
+		
 	}
-	
 	%>
+	<p>
+ 	Numero: <input type="number" name="number1">
+ 	Numero: <input type="number" name="number1">
+ 	Resultado = <%=result %>
+ 	</p>
+ 	<p>
+ 	<button name="+" type="submit">Suma</button>
+ 	<button name="-" type="submit">Resta</button>
+ 	<button name="*" type="submit">Multiplica</button>
+ 	<button name="/" type="submit">Divide</button>
+ 	</p>
+ 	
+	
 </body>
 </html>
