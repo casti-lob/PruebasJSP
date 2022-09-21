@@ -10,7 +10,7 @@
 	
 	<%int alt =Integer.parseInt(request.getParameter("alt"));
 	int multiplier =1;
-	String img = "A";
+	
 			
 	for(int i=0;i<alt;i++){%>
 	<div align="center">
